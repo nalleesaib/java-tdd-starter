@@ -4,7 +4,7 @@ import java.util.List;
 public class Grid {
 
     private List<Pawn> columns[] = new List[7];
-    
+
     public Grid() {
         for( int col=0; col<getColumns(); col++) {
             columns[col] = new ArrayList<>();
@@ -13,7 +13,8 @@ public class Grid {
             }
         }
     }
-    
+
+
     public Pawn getPawn(int column, int ligne) {
         return columns[column-1].get(ligne-1);
     }
@@ -27,6 +28,9 @@ public class Grid {
     }
 
     public void putPawn(int column, Pawn pawn) {
+       Pawn lastPawn=  this.columns[column-1].get(this.getRows()-1);
+        if (!lastPawn.equals(Pawn.EMPTY))
+            throw new IllegalArgumentException();
         int emptyPosition = columns[column-1].indexOf(Pawn.EMPTY);
         this.columns[column-1].add(emptyPosition, pawn);
     }

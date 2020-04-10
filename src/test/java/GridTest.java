@@ -121,7 +121,7 @@ public class GridTest {
     }
 
     @Test
-    public void stackingPawnsUntilOverFlow() {
+    public void stackingPawnsUntilColumnOverFlow() {
         // Given
         Grid grid = new Grid();
         grid.putPawn(4, Pawn.YELLOW); // raw 1
@@ -139,7 +139,13 @@ public class GridTest {
 
     }
 
-
+    @Test
+    public void stackingPawnsUntilRowOverFlow() {
+        // Given
+        Grid grid = new Grid();
+        // Then
+        assertThrows(IllegalArgumentException.class, () -> {grid.putPawn(7, Pawn.YELLOW);});
+    }
 
     @Test
     public void gridShouldHave6RowAnd7Column(){
@@ -148,7 +154,5 @@ public class GridTest {
         int column = grid.getColumns();
         assertTrue(row == 6 && column == 7);
     }
-
-
 
 }
