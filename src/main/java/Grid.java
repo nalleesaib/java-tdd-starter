@@ -10,4 +10,7 @@ public class Grid {
     public Integer getRows(){
         return 6;
     }
+
+    public void putPawn(int i, Pawn red) {
+    }
 }

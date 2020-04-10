@@ -43,6 +43,17 @@ public class GridTest {
       assertThat(pawn).isEqualTo(Pawn.EMPTY);
     }
 
+    @Test
+    public void shouldcheckIfWhenGridIsEmptyAndAddonPostionOneReturnContentOfThatPosition(){
+
+        //Given
+        Grid grid = new Grid();
+        //When
+         grid.putPawn(1,Pawn.RED);
+        Pawn pawn = grid.getPawn(1,1);
+        //Then
+        assertThat(pawn).isEqualTo(Pawn.RED);
+    }
 
 
     @Test
