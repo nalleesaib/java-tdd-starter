@@ -3,17 +3,19 @@ import java.util.List;
 
 public class Grid {
 
-    private List<Pawn> pawns;
+    private List<Pawn> columns[] = new List[7];
     
     public Grid() {
-        pawns = new ArrayList<>();
-        for( int i=0; i<getRows(); i++) {
-            pawns.add(Pawn.EMPTY);
+        for( int col=0; col<getColumns(); col++) {
+            columns[col] = new ArrayList<>();
+            for( int raw=0; raw<getRows(); raw++) {
+                columns[col].add(Pawn.EMPTY);
+            }
         }
     }
     
     public Pawn getPawn(int column, int ligne) {
-        return pawns.get(ligne-1);
+        return columns[column-1].get(ligne-1);
     }
 
     public Integer getColumns(){
@@ -25,7 +27,7 @@ public class Grid {
     }
 
     public void putPawn(int column, Pawn pawn) {
-        int emptyPosition = pawns.indexOf(Pawn.EMPTY);
-        this.pawns.add(emptyPosition, pawn);
+        int emptyPosition = columns[column-1].indexOf(Pawn.EMPTY);
+        this.columns[column-1].add(emptyPosition, pawn);
     }
 }

@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /*
@@ -89,15 +90,16 @@ public class GridTest {
         // Then
         assertThat(pawnOnTop).isEqualTo(Pawn.RED);
         assertThat(pawnOnBottom).isEqualTo(Pawn.YELLOW);
-    }  
-    
+    }
+
     @Test
-    public void stackingPawnsOnDifferentColumns() {
+    public void stackingPawnsOnDifferentColumnsV2() {
         // Given
         Grid grid = new Grid();
         grid.putPawn(2, Pawn.YELLOW);
         grid.putPawn(2, Pawn.RED);
-        grid.putPawn(3, Pawn.RED);
+        grid.putPawn(4, Pawn.YELLOW);
+        grid.putPawn(4, Pawn.YELLOW);
         /*
              .......
              .......
@@ -106,15 +108,37 @@ public class GridTest {
              .*.....
              .O*....
          */
-        
+
         // When
         Pawn pawnOnTop = grid.getPawn(2,2);
-        Pawn pawnOnRight = grid.getPawn(3,1);
-        
+        Pawn pawnOnRight = grid.getPawn(4,1);
+        Pawn pawnOnRightTop = grid.getPawn(4,2);
+
         // Then
         assertThat(pawnOnTop).isEqualTo(Pawn.RED);
-        assertThat(pawnOnRight).isEqualTo(Pawn.RED);
+        assertThat(pawnOnRight).isEqualTo(Pawn.YELLOW);
+        assertThat(pawnOnRightTop).isEqualTo(Pawn.YELLOW);
     }
+
+    @Test
+    public void stackingPawnsUntilOverFlow() {
+        // Given
+        Grid grid = new Grid();
+        grid.putPawn(4, Pawn.YELLOW); // raw 1
+        grid.putPawn(4, Pawn.YELLOW);
+        grid.putPawn(4, Pawn.RED);
+        grid.putPawn(4, Pawn.YELLOW);
+        grid.putPawn(4, Pawn.RED);
+        grid.putPawn(4, Pawn.YELLOW); //raw 6
+
+        // When
+        //grid.putPawn(4, Pawn.RED); //raw 7
+
+        // Then
+        assertThrows(IllegalArgumentException.class, () -> {grid.putPawn(4, Pawn.RED);});
+
+    }
+
 
 
     @Test
