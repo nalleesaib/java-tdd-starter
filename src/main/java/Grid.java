@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Grid {
@@ -28,10 +29,43 @@ public class Grid {
     }
 
     public void putPawn(int column, Pawn pawn) {
+        if(column>getRows()){
+            throw new IllegalArgumentException();
+        }//end if(column>getRows()){
        Pawn lastPawn=  this.columns[column-1].get(this.getRows()-1);
         if (!lastPawn.equals(Pawn.EMPTY))
             throw new IllegalArgumentException();
         int emptyPosition = columns[column-1].indexOf(Pawn.EMPTY);
         this.columns[column-1].add(emptyPosition, pawn);
+    }
+
+    public void clear() {
+        for( int col=0; col<getColumns(); col++) {
+            for( int raw=0; raw<getRows(); raw++) {
+                columns[col].set(raw,Pawn.EMPTY);
+            }
+        }//endfor( int col=0; col<getColumns(); col++) {
+
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+       /* for( int col=getRows()-1; col>0; col--) {
+            StringBuilder  rowString = new StringBuilder();
+            for( int raw=0; raw<getColumns()-1; raw++) {
+                Pawn pawn = getPawn(raw,col);
+                if(pawn.equals(Pawn.YELLOW)){
+                    rowString.append("*");
+                }else if(pawn.equals(Pawn.YELLOW)){
+                    rowString.append("o");
+                }else{
+                    rowString.append(".");
+                }
+            }
+            rowString.append("\n");
+            builder.append(rowString.toString());
+        }//endfor( int col=0; col<getColumns(); col++) {*/
+        return builder.toString();
     }
 }

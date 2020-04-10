@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -153,6 +154,60 @@ public class GridTest {
         int row = grid.getRows();
         int column = grid.getColumns();
         assertTrue(row == 6 && column == 7);
+    }
+
+    @Test
+    public void shouldEmptyGrid(){
+        //Given
+        Grid grid = new Grid();
+        grid.putPawn(2,Pawn.YELLOW);
+        //When
+        grid.clear();
+        //then
+        assertThat(Pawn.EMPTY).isEqualTo(grid.getPawn(2,1));
+    }
+
+    @Test
+    public void shouldEmptyGridBis(){
+        //Given
+        Grid grid = new Grid();
+        grid.putPawn(3,Pawn.YELLOW);
+        //When
+        grid.clear();
+        //then
+        assertThat(Pawn.EMPTY).isEqualTo(grid.getPawn(3,1));
+    }
+
+    @Test
+    @Disabled
+    public void shouldTransforToString(){
+        //Given
+        Grid grid = new Grid();
+        grid.putPawn(3,Pawn.YELLOW);
+       //Then
+        String output=".......\n" +
+                ".......\n" +
+                ".......\n" +
+                ".......\n" +
+                ".......\n" +
+                "..*....";
+        assertThat(output).isEqualTo(grid.toString());
+    }
+
+    @Test
+    @Disabled
+    public void shouldTransforToStringForRed(){
+        //Given
+        Grid grid = new Grid();
+        grid.putPawn(2,Pawn.RED);
+        //Then
+        String output=".......\n" +
+                ".......\n" +
+                ".......\n" +
+                ".......\n" +
+                ".......\n" +
+                ".o.....";
+        assertThat(output).isEqualTo(grid.toString());
     }
 
 }
