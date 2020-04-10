@@ -60,11 +60,60 @@ public class GridTest {
 
         //Given
         Grid grid = new Grid();
-        //When
         grid.putPawn(2,Pawn.YELLOW);
+        //When
         Pawn pawn = grid.getPawn(2,1);
         //Then
         assertThat(pawn).isEqualTo(Pawn.YELLOW);
+    }
+    
+    @Test
+    public void stackingPawnsOnSameColumn() {
+        // Given
+        Grid grid = new Grid();
+        grid.putPawn(2, Pawn.YELLOW);
+        grid.putPawn(2, Pawn.RED);
+        /*
+             .......
+             .......
+             .......
+             .......
+             .*.....
+             .O.....
+         */
+        
+        // When
+        Pawn pawnOnTop = grid.getPawn(2,2);
+        Pawn pawnOnBottom = grid.getPawn(2,1);
+        
+        // Then
+        assertThat(pawnOnTop).isEqualTo(Pawn.RED);
+        assertThat(pawnOnBottom).isEqualTo(Pawn.YELLOW);
+    }  
+    
+    @Test
+    public void stackingPawnsOnDifferentColumns() {
+        // Given
+        Grid grid = new Grid();
+        grid.putPawn(2, Pawn.YELLOW);
+        grid.putPawn(2, Pawn.RED);
+        grid.putPawn(3, Pawn.RED);
+        /*
+             .......
+             .......
+             .......
+             .......
+             .*.....
+             .O*....
+         */
+        
+        // When
+        Pawn pawnOnTop = grid.getPawn(2,2);
+        Pawn pawnOnRight = grid.getPawn(3,1);
+        
+        // Then
+        assertThat(pawnOnTop).isEqualTo(Pawn.RED);
+        assertThat(pawnOnRight).isEqualTo(Pawn.RED);
     }
 
 

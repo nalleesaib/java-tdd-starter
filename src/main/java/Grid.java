@@ -1,14 +1,19 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Grid {
 
-    private boolean isEmpty = true;
-
-    public Pawn getPawn(int column, int ligne) {
-        if(isEmpty){
-            return Pawn.EMPTY;
-        }else{
-            return Pawn.RED;
+    private List<Pawn> pawns;
+    
+    public Grid() {
+        pawns = new ArrayList<>();
+        for( int i=0; i<getRows(); i++) {
+            pawns.add(Pawn.EMPTY);
         }
-
+    }
+    
+    public Pawn getPawn(int column, int ligne) {
+        return pawns.get(ligne-1);
     }
 
     public Integer getColumns(){
@@ -19,7 +24,8 @@ public class Grid {
         return 6;
     }
 
-    public void putPawn(int i, Pawn red) {
-        this.isEmpty = false;
+    public void putPawn(int column, Pawn pawn) {
+        int emptyPosition = pawns.indexOf(Pawn.EMPTY);
+        this.pawns.add(emptyPosition, pawn);
     }
 }
