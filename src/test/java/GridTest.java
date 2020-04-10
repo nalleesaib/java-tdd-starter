@@ -55,6 +55,18 @@ public class GridTest {
         assertThat(pawn).isEqualTo(Pawn.RED);
     }
 
+    @Test
+    public void shouldcheckIfWhenGridIsEmptyAndAddonPostionTwoReturnContentOfThatPosition(){
+
+        //Given
+        Grid grid = new Grid();
+        //When
+        grid.putPawn(2,Pawn.YELLOW);
+        Pawn pawn = grid.getPawn(2,1);
+        //Then
+        assertThat(pawn).isEqualTo(Pawn.YELLOW);
+    }
+
 
     @Test
     public void gridShouldHave6RowAnd7Column(){

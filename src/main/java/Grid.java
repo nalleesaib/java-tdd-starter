@@ -1,6 +1,14 @@
 public class Grid {
+
+    private boolean isEmpty = true;
+
     public Pawn getPawn(int column, int ligne) {
-        return Pawn.EMPTY;
+        if(isEmpty){
+            return Pawn.EMPTY;
+        }else{
+            return Pawn.RED;
+        }
+
     }
 
     public Integer getColumns(){
@@ -12,5 +20,6 @@ public class Grid {
     }
 
     public void putPawn(int i, Pawn red) {
+        this.isEmpty = false;
     }
 }
