@@ -16,7 +16,7 @@ public class Account implements AccountInterface{
 
     @Override
     public void withdrawal(int amount) {
-
+     this.balance-=amount;
     }
 
     @Override

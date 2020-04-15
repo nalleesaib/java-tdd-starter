@@ -1,7 +1,9 @@
 package katabank;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * -tester le solde d'un compte
@@ -20,24 +22,20 @@ public class AccountTest {
         assertThat(new Account().getBalance()).isEqualTo(0);
     }
 
-    @Test
-    public void shouldReturnTenForNewAccountDepositTen(){
-        //Geven
-        AccountInterface account = new Account();
-        //then
-        account.deposit(10);
-        //Then
-        assertThat(account.getBalance()).isEqualTo(10);
-    }
 
     @Test
-    public void shouldReturn20ForNewAccountDeposit20(){
+    public void shouldReturnBalanceForNewAccountDepositAmount(){
         //Geven
         AccountInterface account = new Account();
         //then
         account.deposit(20);
         //Then
         assertThat(account.getBalance()).isEqualTo(20);
+
+        account = new Account();
+        account.deposit(200);
+
+        assertThat(account.getBalance()).isEqualTo(200);
     }
 
     @Test
@@ -64,5 +62,6 @@ public class AccountTest {
         //Then
         assertThat(account.getBalance()).isEqualTo(10);
     }
+
 
 }
