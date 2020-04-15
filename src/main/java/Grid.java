@@ -51,9 +51,9 @@ public class Grid {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-       /* for( int col=getRows()-1; col>0; col--) {
+      /* for( int raw=getRows()-1; raw>=0; raw--) {
             StringBuilder  rowString = new StringBuilder();
-            for( int raw=0; raw<getColumns()-1; raw++) {
+            for( int col=0; col<getColumns()-1; col++) {
                 Pawn pawn = getPawn(raw,col);
                 if(pawn.equals(Pawn.YELLOW)){
                     rowString.append("*");
