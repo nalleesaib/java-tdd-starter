@@ -29,4 +29,40 @@ public class AccountTest {
         //Then
         assertThat(account.getBalance()).isEqualTo(10);
     }
+
+    @Test
+    public void shouldReturn20ForNewAccountDeposit20(){
+        //Geven
+        AccountInterface account = new Account();
+        //then
+        account.deposit(20);
+        //Then
+        assertThat(account.getBalance()).isEqualTo(20);
+    }
+
+    @Test
+    public void shouldReturn15ForExistingAccountWithBalance10Deposit5(){
+        //Geven
+        AccountInterface account = new Account();
+        account.deposit(10);
+
+        //when
+        account.deposit(5);
+
+        //Then
+        assertThat(account.getBalance()).isEqualTo(15);
+    }
+
+
+    @Test
+    public void shouldReturn10ForNewAccountCredit5(){
+        //Geven
+        AccountInterface account = new Account();
+        account.deposit(15);
+        //then
+        account.withdrawal(5);
+        //Then
+        assertThat(account.getBalance()).isEqualTo(10);
+    }
+
 }

@@ -2,14 +2,16 @@ package katabank;
 
 public class Account implements AccountInterface{
 
+    private int balance;
+
     @Override
     public int getBalance() {
-        return 0;
+        return this.balance;
     }
 
     @Override
     public void deposit(int amount) {
-
+        this.balance += amount;
     }
 
     @Override
