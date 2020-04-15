@@ -9,7 +9,16 @@ public class Account implements AccountInterface{
     private int balance;
     private String history;
     private List<AccountTransaction> transactions = new ArrayList<>();
-    private Date currentDate;
+
+
+    private DateProvider dateProvider;
+
+    public Account() {
+    }
+
+    public Account(DateProvider dateProvider) {
+        this.dateProvider = dateProvider;
+    }
 
     @Override
     public int getBalance() {
@@ -19,13 +28,13 @@ public class Account implements AccountInterface{
     @Override
     public void deposit(int amount) {
         this.balance += amount;
-        transactions.add(0,new AccountTransaction(this.currentDate, amount, this.balance));
+        transactions.add(0,new AccountTransaction(dateProvider.getCurrentDate(), amount, this.balance));
     }
 
     @Override
     public void withdrawal(int amount) {
         this.balance -= amount;
-        transactions.add(0,new AccountTransaction(this.currentDate, -amount, this.balance));
+        transactions.add(0,new AccountTransaction(dateProvider.getCurrentDate(), -amount, this.balance));
     }
 
     @Override
@@ -43,14 +52,8 @@ public class Account implements AccountInterface{
         return history;
     }
 
-
-
     public List<AccountTransaction> getTransactions() {
         return transactions;
     }
 
-    @Override
-    public void setDate(Date date) {
-        this.currentDate = date;
-    }
 }

@@ -17,5 +17,4 @@ public interface AccountInterface {
 
     List<AccountTransaction> getTransactions();
 
-    void setDate(Date date);
 }
