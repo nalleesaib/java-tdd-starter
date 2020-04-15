@@ -1,5 +1,8 @@
 package katabank;
 
+import java.util.Date;
+import java.util.List;
+
 public interface AccountInterface {
 
     int getBalance();
@@ -9,4 +12,9 @@ public interface AccountInterface {
     void withdrawal(int amount);
 
     void printStatement();
+
+    String getHistory();
+
+    List<AccountTransaction> getTransactions();
+
 }
