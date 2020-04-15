@@ -86,7 +86,7 @@ public class AccountTest {
         //when
         account.printStatement();
         //then
-        history.append(sdf.format(new Date()) + "||-10||15");
+        history.append(sdf.format(new Date())).append("||-10||15");
         history.append(sdf.format(new Date()) + "||25||25");
         assertThat(account.getHistory()).isEqualTo(history.toString());
     }
@@ -109,5 +109,10 @@ public class AccountTest {
         history.append("15-04-2020||25||25");
         assertThat(account.getHistory()).isEqualTo(history.toString());
     }
+
+    /**
+     * Consultation balance payante 1 EURO / Consultation
+     *
+     */
 
 }

@@ -11,6 +11,7 @@ public class Account implements AccountInterface{
     private List<AccountTransaction> transactions = new ArrayList<>();
 
 
+
     private DateProvider dateProvider;
 
     public Account() {
@@ -55,5 +56,7 @@ public class Account implements AccountInterface{
     public List<AccountTransaction> getTransactions() {
         return transactions;
     }
+
+
 
 }
