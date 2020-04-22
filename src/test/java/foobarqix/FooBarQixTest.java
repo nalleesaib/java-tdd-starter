@@ -1,7 +1,6 @@
 package foobarqix;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,9 +36,42 @@ class FooBarQixTest {
     }
     
     @Test
-    @Disabled
     public void shouldReturnFoo() {
-        // TODO implement me as a red test
+        assertThat(foobarqix.convert(3)).isEqualTo("Foo");
+    }
+    @Test
+    public void shouldReturnFooWhenDivisibleBy3() {
+        assertThat(foobarqix.convert(12)).isEqualTo("Foo");
+    }
+
+    @Test
+    public void shouldReturnBar() {
+        assertThat(foobarqix.convert(5)).isEqualTo("Bar");
+    }
+    
+    @Test
+    public void shouldReturnQix() {
+        assertThat(foobarqix.convert(7)).isEqualTo("Qix");
+    }
+    
+    @Test
+    public void shouldReturnQixWhenDivisibleBy7() {
+        assertThat(foobarqix.convert(28)).isEqualTo("Qix");
+    }
+    
+    @Test
+    public void shouldReturnBarWhenDivisibleBy5() {
+        assertThat(foobarqix.convert(10)).isEqualTo("Bar");
+    }
+    
+    @Test
+    public void shouldReturnConcatenatedTokensWhenDivisibleBySeveralDivisors() {
+        assertThat(foobarqix.convert(15)).isEqualTo("FooBar");
+    }
+
+    @Test
+    public void shouldReturnFooAndQixWhenDivisibleByBoth3And7() {
+        assertThat(foobarqix.convert(21)).isEqualTo("FooQix");
     }
 
 }
