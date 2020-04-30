@@ -3,7 +3,6 @@ package mars.robot;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class RobotTest {
 
@@ -12,33 +11,127 @@ class RobotTest {
         Robot robot = new Robot();
 
         robot.initialize(0,0,'N');
-        assertThat(robot.x).isEqualTo(0);
-        assertThat(robot.y).isEqualTo(0);
-        assertThat(robot.direction).isEqualTo('N');
+        assertThat(robot.getX()).isEqualTo(0);
+        assertThat(robot.getY()).isEqualTo(0);
+        assertThat(robot.getDirection()).isEqualTo('N');
     }
 
     @Test
-    void shouldGoForward(){
+    void shouldGoForwardFromNorth(){
         Robot robot = new Robot();
 
         robot.initialize(0,0,'N');
-        robot.move('F');
+        robot.sendSignal('F');
 
-        assertThat(robot.x).isEqualTo(0);
-        assertThat(robot.y).isEqualTo(1);
-        assertThat(robot.direction).isEqualTo('N');
+        assertThat(robot.getX()).isEqualTo(0);
+        assertThat(robot.getY()).isEqualTo(1);
+        assertThat(robot.getDirection()).isEqualTo('N');
     }
+
+    @Test
+    void shouldGoForwardFromSouth(){
+        Robot robot = new Robot();
+
+        robot.initialize(0,0,'S');
+        robot.sendSignal('F');
+
+        assertThat(robot.getX()).isEqualTo(0);
+        assertThat(robot.getY()).isEqualTo(-1);
+        assertThat(robot.getDirection()).isEqualTo('S');
+    }
+
+    @Test
+    void shouldGoForwardFromEast(){
+        Robot robot = new Robot();
+
+        robot.initialize(0,1,'E');
+        robot.sendSignal('F');
+
+        assertThat(robot.getX()).isEqualTo(1);
+        assertThat(robot.getY()).isEqualTo(1);
+        assertThat(robot.getDirection()).isEqualTo('E');
+    }
+
+    @Test
+    void shouldGoBackWardFromNorth(){
+        Robot robot = new Robot();
+
+        robot.initialize(0,0,'N');
+        robot.sendSignal('B');
+
+        assertThat(robot.getX()).isEqualTo(0);
+        assertThat(robot.getY()).isEqualTo(-1);
+        assertThat(robot.getDirection()).isEqualTo('N');
+    }
+
+    @Test
+    void shouldGoBackWardFromEast(){
+        Robot robot = new Robot();
+
+        robot.initialize(0,0,'E');
+        robot.sendSignal('B');
+
+        assertThat(robot.getX()).isEqualTo(-1);
+        assertThat(robot.getY()).isEqualTo(0);
+        assertThat(robot.getDirection()).isEqualTo('E');
+    }
+
 
     @Test
     void shouldRotateToRight(){
         Robot robot = new Robot();
 
         robot.initialize(0,0,'N');
-        robot.move('R');
+        robot.sendSignal('R');
 
-        assertThat(robot.x).isEqualTo(0);
-        assertThat(robot.y).isEqualTo(0);
-        assertThat(robot.direction).isEqualTo('E');
+        assertThat(robot.getX()).isEqualTo(0);
+        assertThat(robot.getY()).isEqualTo(0);
+        assertThat(robot.getDirection()).isEqualTo('E');
+    }
+
+    @Test
+    void shouldRotateTwiceFromNorth(){
+        Robot robot = new Robot();
+
+        robot.initialize(0,0,'N');
+        robot.sendSignal('R');
+        robot.sendSignal('R');
+
+
+        assertThat(robot.getX()).isEqualTo(0);
+        assertThat(robot.getY()).isEqualTo(0);
+        assertThat(robot.getDirection()).isEqualTo('S');
+    }
+
+    @Test
+    void shouldRotateToRightForthFromNorth(){
+        Robot robot = new Robot();
+
+        robot.initialize(0,0,'N');
+        robot.sendSignal('R');
+        robot.sendSignal('R');
+        robot.sendSignal('R');
+        robot.sendSignal('R');
+
+
+        assertThat(robot.getX()).isEqualTo(0);
+        assertThat(robot.getY()).isEqualTo(0);
+        assertThat(robot.getDirection()).isEqualTo('N');
+    }
+
+    @Test
+    void shouldRotateToLeftForthFromNorth(){
+        Robot robot = new Robot();
+
+        robot.initialize(0,0,'N');
+        robot.sendSignal('L');
+        robot.sendSignal('L');
+        robot.sendSignal('L');
+
+
+        assertThat(robot.getX()).isEqualTo(0);
+        assertThat(robot.getY()).isEqualTo(0);
+        assertThat(robot.getDirection()).isEqualTo('E');
     }
 
     @Test
@@ -46,11 +139,11 @@ class RobotTest {
         Robot robot = new Robot();
 
         robot.initialize(3,3,'N');
-        robot.move('B');
+        robot.sendSignal('B');
 
-        assertThat(robot.x).isEqualTo(3);
-        assertThat(robot.y).isEqualTo(2);
-        assertThat(robot.direction).isEqualTo('N');
+        assertThat(robot.getX()).isEqualTo(3);
+        assertThat(robot.getY()).isEqualTo(2);
+        assertThat(robot.getDirection()).isEqualTo('N');
     }
 
     @Test
@@ -58,13 +151,55 @@ class RobotTest {
         Robot robot = new Robot();
 
         robot.initialize(-5,8,'N');
-        robot.move('B');
-        robot.move('R');
-        robot.move('F');
-        robot.move('F');
 
-        assertThat(robot.x).isEqualTo(-3);
-        assertThat(robot.y).isEqualTo(7);
-        assertThat(robot.direction).isEqualTo('E');
+        robot.sendSignal('B');
+        robot.sendSignal('R');
+        robot.sendSignal('F');
+        robot.sendSignal('F');
+
+        assertThat(robot.getX()).isEqualTo(-3);
+        assertThat(robot.getY()).isEqualTo(7);
+        assertThat(robot.getDirection()).isEqualTo('E');
     }
+
+    @Test
+    void shouldGoForwardFromNorthWhenYIs10(){
+        Robot robot = new Robot();
+
+        robot.initialize(0,10,'N');
+        robot.sendSignal('F');
+
+        assertThat(robot.getX()).isEqualTo(0);
+        assertThat(robot.getY()).isEqualTo(-10);
+        assertThat(robot.getDirection()).isEqualTo('N');
+    }
+
+    @Test
+    void shouldGoForwardFromSouthWhenYIs10(){
+        Robot robot = new Robot();
+
+        robot.initialize(0,-10,'S');
+        robot.sendSignal('F');
+
+        assertThat(robot.getX()).isEqualTo(0);
+        assertThat(robot.getY()).isEqualTo(10);
+        assertThat(robot.getDirection()).isEqualTo('S');
+    }
+
+    @Test
+    void shouldGoForwardFromEastWhenXIs10(){
+        Robot robot = new Robot();
+
+        robot.initialize(10,0,'E');
+        robot.sendSignal('F');
+
+        assertThat(robot.getX()).isEqualTo(-10);
+        assertThat(robot.getY()).isEqualTo(0);
+        assertThat(robot.getDirection()).isEqualTo('E');
+    }
+
+
+
+
+
 }
