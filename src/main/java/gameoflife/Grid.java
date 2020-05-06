@@ -34,20 +34,34 @@ public class Grid {
 
 
     public int getCellNeighbour(int row, int column) {
+        if (isOutOfBound(row, column)) return 0;
         int neigbbours = 0;
-        neigbbours += getCell(row-1,column-1).isAlive()?1:0;
-        neigbbours += getCell(row-1,column).isAlive()?1:0;
-        neigbbours += getCell(row-1,column+1).isAlive()?1:0;
+        neigbbours += getNeigbbour(row - 1, column - 1);
+        neigbbours += getNeigbbour(row-1, column);
+        neigbbours += getNeigbbour(row-1, column+1);
 
-        neigbbours += getCell(row,column-1).isAlive()?1:0;
-        neigbbours += getCell(row,column).isAlive()?1:0;
-        neigbbours += getCell(row,column+1).isAlive()?1:0;
+        neigbbours += getNeigbbour(row, column-1);
+        neigbbours += getNeigbbour(row, column+1);
 
-        neigbbours += getCell(row+1,column-1).isAlive()?1:0;
-        neigbbours += getCell(row+1,column).isAlive()?1:0;
-        neigbbours += getCell(row+1,column+1).isAlive()?1:0;
+        neigbbours += getNeigbbour(row+1, column-1);
+        neigbbours += getNeigbbour(row+1, column);
+        neigbbours += getNeigbbour(row+1, column+1);
 
 
         return neigbbours;
+    }
+
+    private boolean isOutOfBound(int row, int column) {
+        if(row == 0 || column == 0){
+            return true;
+        }
+        if(row == GridConstants.MAX_LIGN-1 || column == GridConstants.MAX_COLUMN-1){
+            return true;
+        }
+        return false;
+    }
+
+    private int getNeigbbour(int row, int column) {
+        return getCell(row, column).isAlive() ? 1 : 0;
     }
 }

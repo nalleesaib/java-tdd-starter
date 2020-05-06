@@ -42,7 +42,7 @@ public class GridTest {
      */
 
     @Test
-    void ShouldReturnAsNeigbour() {
+    void shouldReturnAsNeigbour() {
 
         //vosin de 4,4
         Assertions.assertThat(grid.getCellNeighbour(3,3)).isEqualTo(1);
@@ -59,5 +59,17 @@ public class GridTest {
 
     }
 
+    /*
+    (4,1) = vosin 4,0  4,1  3,1  2,0  2,1
+    (4,2)
+     */
+    @Test
+    void shouldxxx() {
 
+        Assertions.assertThat(grid.getCellNeighbour(4, 0)).isEqualTo(0);
+        Assertions.assertThat(grid.getCellNeighbour(4, 1)).isEqualTo(0);
+        Assertions.assertThat(grid.getCellNeighbour(3, 1)).isEqualTo(0);
+        Assertions.assertThat(grid.getCellNeighbour(2, 0)).isEqualTo(0);
+        Assertions.assertThat(grid.getCellNeighbour(2, 1)).isEqualTo(0);
+    }
 }
