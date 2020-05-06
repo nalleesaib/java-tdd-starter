@@ -72,4 +72,11 @@ public class GridTest {
         Assertions.assertThat(grid.getCellNeighbour(2, 0)).isEqualTo(0);
         Assertions.assertThat(grid.getCellNeighbour(2, 1)).isEqualTo(0);
     }
+
+    @Test
+    void cellWithLessThanTwoNeighbourWillDead() {
+        Assertions.assertThat(grid.willDead(4,4)).isTrue();
+        Assertions.assertThat(grid.willDead(4,5)).isTrue();
+
+}
 }

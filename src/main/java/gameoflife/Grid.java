@@ -64,4 +64,9 @@ public class Grid {
     private int getNeigbbour(int row, int column) {
         return getCell(row, column).isAlive() ? 1 : 0;
     }
+
+
+    public boolean willDead(int row, int column) {
+        return  (getCellNeighbour(row,column)<2);
+    }
 }

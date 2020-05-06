@@ -11,7 +11,7 @@ class ProtocoleZX81Test {
 
     @BeforeEach
     public void setup(){
-        robotEvent = new ProtocoleZX81();
+      //  robotEvent = new ProtocoleZX81();
     }
 
     @Test
@@ -200,6 +200,7 @@ class ProtocoleZX81Test {
         assertThat(robot.getY()).isEqualTo(0);
         assertThat(robot.getDirection()).isEqualTo('E');
     }
+
 
 
 

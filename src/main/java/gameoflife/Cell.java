@@ -11,4 +11,6 @@ public class Cell {
     public boolean isAlive() {
         return status.equals(CellStatus.FULL);
     }
+
+
 }
